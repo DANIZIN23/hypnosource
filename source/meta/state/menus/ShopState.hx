@@ -151,10 +151,10 @@ class ShopState extends MusicBeatState
 		
 			
 
-		var rawJson = File.getContent(Paths.getPath('images/shop/shopText.json', TEXT)).trim();
-		while (!rawJson.endsWith("}"))
+		var rawJson = File.getContent(SUtil.getPath() + Paths.getPath('images/shop/shopText.json', TEXT)).trim();
+		
 			rawJson = rawJson.substr(0, rawJson.length - 1);
-		shopLines = cast Json.parse(rawJson).shopLines;
+		
 
 		PlayState.SONG = null;
 		mutex = new Mutex();
