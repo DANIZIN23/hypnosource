@@ -3,7 +3,8 @@ package meta.state;
 import vlc.MP4Handler;
 import sys.FileSystem;
 import meta.MusicBeat.MusicBeatState;
-
+import lime.utils.Assets;
+    
 class VideoState extends MusicBeatState {
 
     public static var videoName:String;
@@ -11,15 +12,16 @@ class VideoState extends MusicBeatState {
     override public function create() {
         super.create();
 
-        #if android
+        #if !android
         var filepath:String = Paths.video(videoName);
-        if (!FileSystem.exists(filepath)) {
+        if (!Assets.exists(filepath)) {
             close();
             return;
         }
 
-        
-        
+        var video:MP4Handler = new MP4Handler();
+        video.playVideo(filepath);
+        video.finishCallback = function() {
             close();
             return;
         }
