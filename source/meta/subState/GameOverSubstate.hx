@@ -550,20 +550,11 @@ class GameOverSubstate extends MusicBeatSubState
 						bg.antialiasing = true;
 
 
-						var video:MP4Handler = new MP4Handler();
-						video.playVideo(Paths.video('feraligatr'));
-						video.finishCallback = function()
-						{
-							if (video.bitmapData != null)
-								bg.pixels = video.bitmapData;
-
-							bg.setGraphicSize(Std.int(FlxG.width), Std.int(FlxG.height));
-							bg.screenCenter();
-						}
+						
 	
 						deathEnd = function()
 						{
-							if (video != null) video.finishVideo();
+							
 							FlxTween.tween(bg, {alpha: 0}, timeBeforeEnd, {ease: FlxEase.linear});
 
 							onEnd = function()
@@ -577,8 +568,7 @@ class GameOverSubstate extends MusicBeatSubState
 						};
 
 						escapeFunction = function ()
-							{
-								if (video != null) video.finishVideo();
+							{        
 							}
 					} 
 				else if (PlayState.SONG.song.toLowerCase() == "monochrome") {
@@ -663,6 +653,10 @@ class GameOverSubstate extends MusicBeatSubState
 					};
 					deathEnd = function() {
 						bf.playAnim('deathConfirm');
+							
+							#if android
+		addVirtualPad(NONE, A_B);
+		#end
 					};
 				}
 			
