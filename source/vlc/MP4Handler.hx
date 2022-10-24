@@ -1,5 +1,6 @@
 package vlc;
 
+#if android
 import openfl.events.Event;
 import flixel.FlxG;
 import vlc.bitmap.VlcBitmap;
