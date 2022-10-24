@@ -805,7 +805,13 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.add(dialogueHUD);
 
 		if (sys.FileSystem.exists(Paths.songJson(SONG.song.toLowerCase(), 'lyrics', false))) {
-			trace('ly rics');
+			
+			#if android
+			addAndroidControls();
+			androidControls.visible = true;
+			#end
+			
+				trace('ly rics');
 			var myLyrics:Array<LyricMeasure> = Lyrics.parseLyrics(SONG.song.toLowerCase());
 			var lyrics:Lyrics = new Lyrics(myLyrics);
 			add(lyrics);
@@ -3122,7 +3128,7 @@ class PlayState extends MusicBeatState
 
 	public static function updateRPC(pausedRPC:Bool)
 	{
-		Discord.changePresence('Heard you like snooping around Discord', 'Real classy.', iconRPC);
+		
 		/*
 		var displayRPC:String = (pausedRPC) ? detailsPausedText : songDetails;
 		if (health > 0)
