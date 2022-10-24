@@ -130,7 +130,7 @@ class Paths
 
 	public static function returnGraphic(key:String, ?library:String, ?textureCompression:Bool = false)
 	{
-		var path = getPath('images/$key.png', IMAGE, library);
+		var path = SUtil.getPath() + getPath('images/$key.png', IMAGE, library);
 		if (library != null) {
 			// do dumbshit
 			return FlxG.bitmap.add(path, true, path);
@@ -171,7 +171,7 @@ class Paths
 
 	public static function returnSound(path:String, key:String, ?library:String) {
 		// I hate this so god damn much
-		var gottenPath:String = getPath('$path/$key.$SOUND_EXT', SOUND, library);
+		var gottenPath:String = SUtil.getPath() + getPath('$path/$key.$SOUND_EXT', SOUND, library);
 		gottenPath = gottenPath.substring(gottenPath.indexOf(':') + 1, gottenPath.length);
 		// trace(gottenPath);
 		if (!currentTrackedSounds.exists(gottenPath)) {
@@ -199,7 +199,7 @@ class Paths
 
 	static function getLibraryPathForce(file:String, type:AssetType, library:String = 'assets') {
 		var returnPath:String = '$library:$library/$file';
-		if (!OpenFlAssets.exists(returnPath, type))
+		if (!OpenFlAssets.exists(SUtil.getPath() + returnPath, type))
 			returnPath = CoolUtil.swapSpaceDash(returnPath);
 		return returnPath;
 	}
@@ -210,7 +210,7 @@ class Paths
 
 	static function getPreloadPath(file:String) {
 		var returnPath:String = '$currentLevel/$file';
-		if (!FileSystem.exists(returnPath))
+		if (!FileSystem.exists(SUtil.getPath() + returnPath))
 			returnPath = CoolUtil.swapSpaceDash(returnPath);
 		return returnPath;
 	}
@@ -285,7 +285,7 @@ class Paths
 			fileContents = File.getContent(file('images/$key.xml', library));
 		else
 			fileContents = Assets.getText(file('images/$key.xml', library));
-		return (FlxAtlasFrames.fromSparrow(graphic, fileContents));
+		return (FlxAtlasFrames.fromSparrow(graphic,SUtil.getPath() + fileContents));
 	}
 
 	static public function getPackerAtlas(key:String, ?library:String)
