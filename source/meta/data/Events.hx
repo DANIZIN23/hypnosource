@@ -14,7 +14,7 @@ import meta.data.ScriptHandler;
 import meta.state.PlayState;
 import openfl.filters.ShaderFilter;
 import sys.FileSystem;
-
+import openfl.utils.Assets;
 using StringTools;
 
 typedef PlacedEvent = {
@@ -304,6 +304,7 @@ class Events {
 	public static function obtainEvents() {
 		loadedModules.clear();
 		eventList = [];
+		
 		var list = Assets.list();
 		var tempEventArray = list.filter(text -> text.contains('assets/events'));
 		//
@@ -316,7 +317,9 @@ class Events {
 				futureEvents.push(event);
 			} else {
 				if (PlayState.SONG != null && CoolUtil.spaceToDash(PlayState.SONG.song.toLowerCase()) == event) {
-					var internalEvents:Array<String> = FileSystem.readDirectory('assets/events/$event');
+					var list = Assets.list();
+					var internalEvents:Array<String> = list.filter(text -> text.contains('assets/events'));
+					
 					for (subEvent in internalEvents)
 					{
 						subEvent = subEvent.substring(0, subEvent.indexOf('.', 0));
