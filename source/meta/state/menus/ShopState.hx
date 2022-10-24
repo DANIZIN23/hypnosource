@@ -148,7 +148,7 @@ class ShopState extends MusicBeatState
 
 		if (!freeplaySelected)
 			
-		else
+		
 			
 
 		var rawJson = File.getContent(SUtil.getPath() + Paths.getPath('images/shop/shopText.json', TEXT)).trim();
