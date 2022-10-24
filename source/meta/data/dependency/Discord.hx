@@ -1,6 +1,6 @@
 package meta.data.dependency;
 
-
+#if !android
 import lime.app.Application;
 import meta.state.PlayState;
 import discord_rpc.DiscordRpc;
@@ -77,3 +77,4 @@ class Discord
 		DiscordRpc.shutdown();
 	}
 }
+#end
