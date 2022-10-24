@@ -19,8 +19,7 @@ class VideoState extends MusicBeatState {
         }
 
         
-        video.playVideo(filepath);
-        video.finishCallback = function() {
+        
             close();
             return;
         }
