@@ -87,7 +87,11 @@ class UnlockSubstate extends MusicBeatSubState {
 		textGroup = new FlxTypedGroup<FlxText>();
 		add(textGroup);
 
-		FlxTween.tween(blackBackground, {alpha: 0.75}, 0.35, {ease: FlxEase.quintOut});
+		#if android
+	        addVirtualPad(NONE, A);
+	        #end
+			
+	        FlxTween.tween(blackBackground, {alpha: 0.75}, 0.35, {ease: FlxEase.quintOut});
 		FlxTween.tween(textbox, {alpha: 1, boxWidth: 24, boxHeight: 12}, 0.75, {ease: FlxEase.elasticOut, onComplete: function(tween:FlxTween){
 			unlockText = new Alphabet(0, 64, "YOU HAVE UNLOCKED", true, false, false);
 			add(unlockText);
