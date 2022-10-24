@@ -76,8 +76,9 @@ class TitleState extends MusicBeatState
 		if (!initialized)
 		{
 			///*
+			#if !android
 			Discord.changePresence('TITLE SCREEN', 'Main Menu');
-			
+			#end
 			ForeverTools.resetMenuMusic(true);
 		}
 
@@ -236,6 +237,14 @@ class TitleState extends MusicBeatState
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER;
+		
+		#if android
+		for (touch in FlxG.touches.list)
+			if (touch.justPressed)
+				pressedEnter = true;
+		#end
+			
+		
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
 		if (gamepad != null)
