@@ -50,7 +50,7 @@ class StoryMenuState extends MusicBeatState {
 
 		// "Simply use setProperty()" - BAnims
 
-		Discord.changePresence('STORY MODE', 'Main Menu');
+		
 		ForeverTools.resetMenuMusic(true);
 
         gameboy = new FlxSprite();
@@ -97,7 +97,11 @@ class StoryMenuState extends MusicBeatState {
 		cornerText = new FlxText().setFormat(Paths.font("poketext.ttf"), counterTextSize, FlxColor.BLACK);
         add(cornerText);
         
-		updateSelectionScript(selectedWeek);
+	#if android	
+	addVirtualPad(LEFT_RIGHT, A_B);   
+	#end	
+	   
+	    updateSelectionScript(selectedWeek);
 		CoolUtil.lerpSnap = true;
     }
 
