@@ -479,7 +479,7 @@ class Controls extends FlxActionSet
 	{
 		#if debug
 		if (!byName.exists(name))
-             / / throw 'Invalid name: $name';
+             // throw 'Invalid name: $name';
 		#end
 		return byName[name].check();
 	}
